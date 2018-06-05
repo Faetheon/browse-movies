@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.descriptionContainer {
+  width: 45%;
+  overflow: hidden;
+}
+
+.imageContainer {
+  width: 45%;
+  overflow: hidden;
+}
+
+.moviePoster {
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+.movieAttributes {
+  align-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.App-header {
+  background-color: #222;
+  height: 200px;
+  padding: 2;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
