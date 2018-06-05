@@ -6,7 +6,7 @@ import Movie from './Movie.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [], value: '' };
+    this.state = { data: [], value: '', searchValue: '', movieTitles: [] };
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,6 +23,7 @@ class App extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+    this.setState({ searchValue: event.target.value });
   }
 
   handleSubmit(event) {
@@ -34,7 +35,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome</h1>
           <form onSubmit={this.handleSubmit}>
             <input handleChange={this.handleChange.bind(this)} />
             <input type="submit" value="Search" />

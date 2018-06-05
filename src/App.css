@@ -22,6 +22,10 @@
   margin-left: 4px;
 }
 
+.movieContainer {
+  background-color: #ddd;
+}
+
 .movieAttributes {
   align-content: flex-start;
   display: flex;
