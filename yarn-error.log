@@ -7258,7 +7258,7 @@ Trace:
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
   Arguments: /d /s /c node scripts/start.js
-  Directory: C:\Users\Faetheon\CodeStuff\movies
+  Directory: C:\Users\Faetheon\CodeStuff\browse-movies\browse-movies
   Output:
   
       at ProcessTermError.MessageError (C:\Users\Faetheon\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)

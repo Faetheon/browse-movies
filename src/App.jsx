@@ -1,54 +1,95 @@
 import React, { Component } from 'react';
+import $ from '../node_modules/jquery';
 import logo from './logo.svg';
+import arrow from './downArrow.png';
 import './App.css';
 import Movie from './Movie.jsx';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: [], value: '', searchValue: '', movieTitles: [] };
-    this.handleChange = this.handleChange.bind(this);
-  }
+	constructor(props) {
+		super(props);
+		this.state = { results: [], value: '' };
+		this.handleChange = this.handleChange.bind(this);
+	}
 
-  componentDidMount() {
-    fetch(
-      `https:api.themoviedb.org/3/discover/movie?sort_by=vote_count.desc&api_key=${
-        process.env.API_KEY
-      }` /*${process.env.API_KEY} optional {options}*/
-    )
-      .then(body => body.json())
-      .then(data => this.setState({ data }))
-      .catch(error => console.warn(error));
-  }
+	componentDidMount() {
+		fetch(
+			`https:api.themoviedb.org/3/discover/movie?sort_by=vote_count.desc&api_key=${
+				process.env.API_KEY
+			}` /*${process.env.API_KEY} optional {options}*/
+		)
+			.then(body => body.json())
+			.then(data => this.setState({ results: data.results }))
+			.catch(error => console.warn(error));
+	}
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-    this.setState({ searchValue: event.target.value });
-  }
+	// Changed this to an arrow function so you don't have to use .bind(this)
+	handleChange = event => {
+		this.setState({ value: event.target.value });
+	};
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
+	handleSubmit(event) {
+		event.preventDefault();
+	}
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome</h1>
-          <form onSubmit={this.handleSubmit}>
-            <input handleChange={this.handleChange.bind(this)} />
-            <input type="submit" value="Search" />
-          </form>
-        </header>
-        <div className="movieContainer">
-          {this.state.data.results
-            ? this.state.data.results.map(result => <Movie key={result.id} result={result} />)
-            : null}
-        </div>
-      </div>
-    );
-  }
+	handleClick = event => {
+		$('.collapsedMenu').hasClass('collapsedMenu')
+			? $('.collapsedMenu')
+					.addClass('expandedMenu')
+					.removeClass('collapsedMenu')
+			: $('.expandedMenu')
+					.addClass('collapsedMenu')
+					.removeClass('expandedMenu');
+		$('.extraOptions').toggle();
+	};
+
+	// Added a helper method to get the results that need to be displayed
+	get getResults() {
+		const { results, value } = this.state;
+		// Ideally all of your string comparisons should be done with lowercase text
+		if (value) {
+			// Here I am using filter in order to only display the results that match the filter parameters
+			return results.filter(r => r.title.includes(value) || r.overview.includes(value));
+		}
+		return results;
+	}
+
+	render() {
+		// Changed <input handleChange to <input onChange
+		return (
+			<div className="App">
+				<header className="App-header">
+					<img src={logo} className="App-logo" alt="logo" />
+					<h1 className="App-title">Welcome to Movies!</h1>
+					<form onSubmit={this.handleSubmit}>
+						<input onChange={this.handleChange} value={this.state.value} />
+						<input type="submit" value="Search" />
+					</form>
+				</header>
+				<div className="menu">
+					<div className="menuOptions">Home</div>
+					<div className="menuOptions">Movies near you</div>
+					<div className="menuOptions">About us</div>
+					<a className="menuImage">
+						<div onClick={this.handleClick} className="menuOptions">
+							More...<img alt={arrow} src={arrow} className="menuImage" />
+						</div>
+					</a>
+				</div>
+				<div id="dropDownMenu" className="collapsedMenu">
+					<div className="extraOptions">1</div>
+					<div className="extraOptions">2</div>
+					<div className="extraOptions">3</div>
+					<div className="extraOptions">4</div>
+					<div className="extraOptions">5</div>
+					<div className="extraOptions">6</div>
+				</div>
+				<div className="movieContainer">
+					{this.getResults.map(result => <Movie key={result.id} result={result} />)}
+				</div>
+			</div>
+		);
+	}
 }
 
 export default App;
