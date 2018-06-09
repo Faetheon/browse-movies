@@ -15,10 +15,12 @@
   flex-wrap: wrap;
   align-items: center;
   height: 200px;
+  transition: height 400ms;
 }
 
 .collapsedMenu {
   height: 0px;
+  transition: height 400ms;
 }
 
 .extraOptions {

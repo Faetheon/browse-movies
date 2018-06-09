@@ -29,6 +29,13 @@ class App extends Component {
 	};
 
 	handleSubmit(event) {
+		// fetch(
+		// 	`https:api.themoviedb.org/3/discover/movie?sort_by=${event.target.value}.desc&api_key=${
+		// 		process.env.API_KEY
+		// 	}`
+		// )
+		// 	.then(body => body.json())
+		// 	.then(data => this.setState({ results: data.results }));
 		event.preventDefault();
 	}
 
