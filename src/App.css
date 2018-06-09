@@ -16,10 +16,12 @@
   align-items: center;
   height: 200px;
   transition: height 400ms;
+  background-color: #ddd;
 }
 
 .collapsedMenu {
   height: 0px;
+  background-color: #ddd;
   transition: height 400ms;
 }
 
