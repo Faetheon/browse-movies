@@ -1,5 +1,5 @@
 .App-header {
-  background-color: #222;
+  background: linear-gradient(#222, #ddd);
   height: 200px;
   padding: 2;
   color: white;
@@ -34,7 +34,6 @@
 
 .App {
   text-align: center;
-  background-color: #aaa;
 }
 
 .App-logo {
@@ -55,15 +54,18 @@
 .menu {
   display: flex;
   flex-flow: row;
-  width: 90%;
 }
 
 .menuImage {
-  height: 15px;
+  height: 25px;
 }
 
 .menuOptions {
   flex-grow: 1;
+  padding-right: 70px;
+  background-color: #ddd;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .moviePoster {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Router, Route, Switch } from 'react-router';
 import $ from '../node_modules/jquery';
 import logo from './logo.svg';
 import arrow from './downArrow.png';
@@ -28,16 +29,17 @@ class App extends Component {
 		this.setState({ value: event.target.value });
 	};
 
-	handleSubmit(event) {
-		// fetch(
-		// 	`https:api.themoviedb.org/3/discover/movie?sort_by=${event.target.value}.desc&api_key=${
-		// 		process.env.API_KEY
-		// 	}`
-		// )
-		// 	.then(body => body.json())
-		// 	.then(data => this.setState({ results: data.results }));
+	handleSubmit = event => {
+		fetch(
+			`https:api.themoviedb.org/3/search/multi?&api_key=${
+				process.env.API_KEY
+			}` /*${process.env.API_KEY} optional {options}*/
+		)
+			.then(body => body.json())
+			.then(data => this.setState({ results: data.results }))
+			.catch(error => console.warn(error));
 		event.preventDefault();
-	}
+	};
 
 	handleClick = event => {
 		$('.collapsedMenu').hasClass('collapsedMenu')
