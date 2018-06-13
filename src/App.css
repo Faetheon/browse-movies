@@ -36,11 +36,16 @@
 
 .App {
   text-align: center;
+  background-color: #ddd;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+}
+
+body {
+  background-color: #ddd;
 }
 
 .descriptionContainer {

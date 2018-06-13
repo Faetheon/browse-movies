@@ -30,14 +30,6 @@ class App extends Component {
 	};
 
 	handleSubmit = event => {
-		fetch(
-			`https:api.themoviedb.org/3/search/multi?&api_key=${
-				process.env.API_KEY
-			}` /*${process.env.API_KEY} optional {options}*/
-		)
-			.then(body => body.json())
-			.then(data => this.setState({ results: data.results }))
-			.catch(error => console.warn(error));
 		event.preventDefault();
 	};
 
@@ -58,7 +50,9 @@ class App extends Component {
 		// Ideally all of your string comparisons should be done with lowercase text
 		if (value) {
 			// Here I am using filter in order to only display the results that match the filter parameters
-			return results.filter(r => r.title.includes(value) || r.overview.includes(value));
+			return results.filter(
+				r => r.title.includes(value.toLowerCase()) || r.overview.includes(value.toLowerCase())
+			);
 		}
 		return results;
 	}
