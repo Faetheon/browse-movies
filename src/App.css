@@ -26,8 +26,11 @@
 }
 
 .extraOptions {
-  flex-grow: 1;
+  box-sizing: border-box;
+  margin-left: 300px;
   display: none;
+  font-size: 25px;
+  cursor: pointer;
 }
 
 .App-intro {
@@ -68,11 +71,12 @@ body {
 }
 
 .menuOptions {
-  flex-grow: 1;
-  padding-right: 70px;
+  box-sizing: border-box;
+  margin-left: 284px;
   background-color: #ddd;
   font-size: 30px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .moviePoster {

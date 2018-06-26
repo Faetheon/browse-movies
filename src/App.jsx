@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import arrow from './downArrow.png';
 import './App.css';
 import Movie from './Movie.jsx';
+import Display from './Display.jsx';
 
 class App extends Component {
 	constructor(props) {
@@ -14,11 +15,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		fetch(
-			`https:api.themoviedb.org/3/discover/movie?sort_by=vote_count.desc&api_key=${
-				process.env.API_KEY
-			}` /*${process.env.API_KEY} optional {options}*/
-		)
+		fetch(`https:api.themoviedb.org/3/discover/movie?sort_by=vote_count.desc&api_key=${process.env.API_KEY}`)
 			.then(body => body.json())
 			.then(data => this.setState({ results: data.results }))
 			.catch(error => console.warn(error));
@@ -30,18 +27,21 @@ class App extends Component {
 	};
 
 	handleSubmit = event => {
-		fetch(
-			`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${
-				this.state.value
-			}&page=1&include_adult=false` /*${process.env.API_KEY} optional {options}*/
-		)
-			.then(body => body.json())
-			.then(data => this.setState({ results: data.results }))
-			.catch(error => console.warn(error));
+		if (this.state.value === '') {
+		} else {
+			fetch(
+				`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${
+					this.state.value
+				}&page=1&include_adult=false` /*${process.env.API_KEY} optional {options}*/
+			)
+				.then(body => body.json())
+				.then(data => this.setState({ results: data.results }))
+				.catch(error => console.warn(error));
+		}
 		event.preventDefault();
 	};
 
-	handleClick = event => {
+	dropDown = event => {
 		$('.collapsedMenu').hasClass('collapsedMenu')
 			? $('.collapsedMenu')
 					.addClass('expandedMenu')
@@ -50,6 +50,13 @@ class App extends Component {
 					.addClass('collapsedMenu')
 					.removeClass('expandedMenu');
 		$('.extraOptions').toggle();
+	};
+
+	handleClick = event => {
+		// fetch(`https://api.themoviedb.org/3/movie/${searchTerm}?api_key=${process.env.API_KEY}`)
+		// 	.then(body => body.json())
+		// 	.then(data => this.setState({ results: data.results }))
+		// 	.catch(error => console.warn(error));
 	};
 
 	// Added a helper method to get the results that need to be displayed
@@ -79,7 +86,7 @@ class App extends Component {
 						<input
 							onKeyPress={e => {
 								if (e.keyCode === 13) {
-									this.handleSubmit;
+									this.handleSubmit();
 								}
 							}}
 							type="submit"
@@ -89,25 +96,24 @@ class App extends Component {
 				</header>
 				<div className="menu">
 					<div className="menuOptions">Home</div>
-					<div className="menuOptions">Movies near you</div>
+					<div className="menuOptions">New releases</div>
 					<div className="menuOptions">About us</div>
 					<a className="menuImage">
-						<div onClick={this.handleClick} className="menuOptions">
+						<div onClick={this.dropDown} className="menuOptions">
 							More...<img alt={arrow} src={arrow} className="menuImage" />
 						</div>
 					</a>
 				</div>
 				<div id="dropDownMenu" className="collapsedMenu">
-					<div className="extraOptions">1</div>
-					<div className="extraOptions">2</div>
-					<div className="extraOptions">3</div>
-					<div className="extraOptions">4</div>
-					<div className="extraOptions">5</div>
-					<div className="extraOptions">6</div>
+					<div className="extraOptions">Popular</div>
+					<div className="extraOptions">Now playing</div>
+					<div className="extraOptions">Top rated</div>
+					<div className="extraOptions">Upcoming</div>
 				</div>
 				<div className="movieContainer">
 					{this.getResults.map(result => <Movie key={result.id} result={result} />)}
 				</div>
+				<Display />
 			</div>
 		);
 	}
