@@ -1,0 +1,32 @@
+.descriptionContainer {
+  width: 45%;
+  overflow: hidden;
+}
+
+.imageContainer {
+  width: 45%;
+  overflow: hidden;
+}
+
+.moviePoster {
+  margin-top: 2px;
+  margin-left: 4px;
+  height: 300px;
+  transition: height 1s;
+}
+
+.moviePoster:hover {
+  height: 500px;
+}
+
+.movieContainer {
+  background-color: #ddd;
+  margin-top: 100px;
+}
+
+.movieAttributes {
+  align-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

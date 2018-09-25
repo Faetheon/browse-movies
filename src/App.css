@@ -1,111 +1,79 @@
+.App {
+	text-align: center;
+	background-color: #ddd;
+}
+
 .App-header {
-  background: linear-gradient(#222, #ddd);
-  height: 200px;
-  padding: 2;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.expandedMenu {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  align-items: center;
-  height: 200px;
-  transition: height 400ms;
-  background-color: #ddd;
-}
-
-.collapsedMenu {
-  height: 0px;
-  background-color: #ddd;
-  transition: height 400ms;
-}
-
-.extraOptions {
-  box-sizing: border-box;
-  margin-left: 300px;
-  display: none;
-  font-size: 25px;
-  cursor: pointer;
+	background: linear-gradient(#222, #ddd);
+	height: 200px;
+	padding: 2;
+	color: white;
 }
 
 .App-intro {
-  font-size: large;
-}
-
-.App {
-  text-align: center;
-  background-color: #ddd;
+	font-size: large;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
+}
+
+.App-title {
+	font-size: 1.5em;
 }
 
 body {
-  background-color: #ddd;
+	background-color: #ddd;
 }
 
-.descriptionContainer {
-  width: 45%;
-  overflow: hidden;
+.collapsedMenu {
+	height: 0px;
+	background-color: #ddd;
+	transition: height 400ms;
 }
 
-.imageContainer {
-  width: 45%;
-  overflow: hidden;
+.expandedMenu {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+	align-items: center;
+	height: 200px;
+	transition: height 400ms;
+	background-color: #ddd;
+}
+
+.extraOptions {
+	box-sizing: border-box;
+	margin-left: 300px;
+	display: none;
+	font-size: 25px;
+	cursor: pointer;
 }
 
 .menu {
-  display: flex;
-  flex-flow: row;
+	display: flex;
+	flex-flow: row;
 }
 
 .menuImage {
-  height: 25px;
+	height: 25px;
 }
 
 .menuOptions {
-  box-sizing: border-box;
-  margin-left: 284px;
-  background-color: #ddd;
-  font-size: 30px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.moviePoster {
-  margin-top: 2px;
-  margin-left: 4px;
-  height: 300px;
-  transition: height 1s;
-}
-
-.moviePoster:hover {
-  height: 500px;
-}
-
-.movieContainer {
-  background-color: #ddd;
-}
-
-.movieAttributes {
-  align-content: flex-start;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	box-sizing: border-box;
+	margin-left: 284px;
+	background-color: #ddd;
+	font-size: 30px;
+	font-weight: bold;
+	cursor: pointer;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
